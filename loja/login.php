@@ -7,10 +7,12 @@ $usuario = buscaUsuario($conexao, $_POST["email"], $_POST["senha"]);
 var_dump($usuario);
 
 if($usuario == null){
-    header("Location: index.php?login=0");
+    $_SESSION["danger"] = "Usuario ou senha invalida";
+    header("Location: index.php");
 } else {
+    $_SESSION["success"] = "Usuario logado com sucesso";
     logaUsuario($usuario["email"]);
-    header("Location: index.php?login=1");
+    header("Location: index.php");
 }
 
 die();
